@@ -1,34 +1,68 @@
-// 引用名言数据
-const quotes = [
-  {
-    text: "Make America Great Again!",
-    date: "Campaign Slogan, 2016",
-  },
-  {
-    text: "Nobody knows the system better than me, which is why I alone can fix it.",
-    date: "Republican National Convention, 2016",
-  },
-  // 添加更多引用
-];
+class LanguageManager {
+  constructor() {
+    this.currentLang = 'en';
+    this.init();
+  }
 
-// 动态加载引用
-function loadQuotes() {
-  const quoteGrid = document.querySelector(".quote-grid");
+  init() {
+    const langBtns = document.querySelectorAll('.lang-btn');
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        this.switchLanguage(lang);
+      });
+    });
 
-  quotes.forEach((quote) => {
-    const quoteCard = document.createElement("article");
-    quoteCard.className = "quote-card";
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+      this.switchLanguage(savedLang);
+    }
 
-    quoteCard.innerHTML = `
-            <blockquote>
-                "${quote.text}"
-                // <footer>- ${quote.date}</footer>
-            </blockquote>
-        `;
+    this.renderQuotes();
+  }
 
-    quoteGrid.appendChild(quoteCard);
-  });
+  switchLanguage(lang) {
+    this.currentLang = lang;
+    localStorage.setItem('preferredLanguage', lang);
+    
+    const newUrl = new URL(window.location);
+    newUrl.searchParams.set('lang', lang);
+    window.history.pushState({}, '', newUrl);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    this.updateContent();
+  }
+
+  updateContent() {
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      const key = element.dataset.i18n;
+      element.textContent = i18n[this.currentLang][key];
+    });
+
+    document.title = this.currentLang === 'en' 
+      ? "Donald Trump Quotes | Presidential Wisdom & Memorable Statements"
+      : "特朗普语录 | 总统智慧与难忘言论";
+
+    this.renderQuotes();
+  }
+
+  renderQuotes() {
+    const container = document.getElementById('quoteContainer');
+    const quotes = i18n[this.currentLang].quotes;
+    
+    container.innerHTML = quotes.map(quote => `
+      <article class="quote-card">
+        <blockquote class="quote-content">
+          ${quote}
+        </blockquote>
+      </article>
+    `).join('');
+  }
 }
 
-// 页面加载完成后执行
-// document.addEventListener('DOMContentLoaded', loadQuotes);
+document.addEventListener('DOMContentLoaded', () => {
+  new LanguageManager();
+});

@@ -91,6 +91,8 @@ nav ul li a:hover {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .quote-card:hover {
@@ -104,7 +106,7 @@ nav ul li a:hover {
   top: -20px;
   left: 20px;
   font-size: 120px;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   color: rgba(0, 0, 0, 0.03);
   line-height: 1;
 }
@@ -114,7 +116,7 @@ nav ul li a:hover {
   font-size: 1.1rem;
   line-height: 1.6;
   color: #2c3e50;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   position: relative;
   z-index: 1;
 }
@@ -159,11 +161,11 @@ footer {
     gap: 1.5rem;
     padding: 1.5rem 0;
   }
-  
+
   .quote-card {
     padding: 1.5rem;
   }
-  
+
   .quote-content {
     font-size: 1rem;
   }
@@ -182,23 +184,34 @@ footer {
 }
 
 .lang-btn {
-  padding: 5px 12px;
-  border-radius: 15px;
-  font-size: 14px;
+  background: none;
+  border: 1.5px solid #e0e0e0;
   cursor: pointer;
-  text-decoration: none;
-  color: #333;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  color: #666;
   transition: all 0.3s ease;
+  border-radius: 20px;
+  font-weight: 400;
 }
 
 .lang-btn:hover {
-  background: #f0f0f0;
+  border-color: #2c3e50;
+  color: #2c3e50;
 }
 
 .lang-btn.active {
-  background: #007bff;
-  color: white;
-  cursor: default;
+  color: #fff;
+  background: #2c3e50;
+  border-color: #2c3e50;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(44, 62, 80, 0.2);
+}
+
+/* 添加一个小动画效果 */
+.lang-btn.active:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(44, 62, 80, 0.25);
 }
 
 /* 调整页面顶部间距，为语言切换器留出空间 */
@@ -216,5 +229,16 @@ footer {
   .lang-btn {
     padding: 4px 8px;
     font-size: 12px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

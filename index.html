@@ -23,15 +23,16 @@
     />
   </head>
   <body>
-    <nav class="language-switcher">
-      <span class="lang-btn active">English</span>
-      <a href="./chinese.html" class="lang-btn">中文</a>
-    </nav>
-
     <header>
       <nav>
         <div class="container">
-          <h1>Trump Say</h1>
+          <div class="nav-content">
+            <h1 data-i18n="title">Trump Say</h1>
+            <div class="language-switcher">
+              <button class="lang-btn active" data-lang="en">English</button>
+              <button class="lang-btn" data-lang="zh">中文</button>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
@@ -39,67 +40,8 @@
     <main>
       <section id="quotes">
         <div class="container">
-          <div class="quote-grid">
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                Make America Great Again!
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                Nobody knows the system better than me, which is why I alone can fix it.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                I will be the greatest jobs president that God ever created.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                We will build a great wall along the southern border. And Mexico will pay for the wall.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                I'm really rich. And by the way, I'm not saying that in a bragging way.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                What separates the winners from the losers is how a person reacts to each new twist of fate.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                I think I am actually humble. I think I'm much more humble than you would understand.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                I have the best words.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                Sorry losers and haters, but my IQ is one of the highest - and you all know it!
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                Part of the beauty of me is that I'm very rich.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                My fingers are long and beautiful, as, it has been well documented, are various other parts of my body.
-              </blockquote>
-            </article>
-            <article class="quote-card">
-              <blockquote class="quote-content">
-                I could stand in the middle of Fifth Avenue and shoot somebody, and I wouldn't lose any voters.
-              </blockquote>
-            </article>
+          <div class="quote-grid" id="quoteContainer">
+            <!-- 引号将由 JavaScript 动态生成 -->
           </div>
         </div>
       </section>
@@ -107,14 +49,15 @@
 
     <footer>
       <div class="container">
-        <p>&copy;2024 Trump Say. All rights reserved.</p>
+        <p data-i18n="copyright">&copy;2024 Trump Say. All rights reserved.</p>
       </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 
+    <!-- Google Analytics -->
     <div style="display: none">
-      <!-- Google tag (gtag.js) -->
       <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-8RLG1JCQ51"
@@ -125,7 +68,6 @@
           dataLayer.push(arguments);
         }
         gtag("js", new Date());
-
         gtag("config", "G-8RLG1JCQ51");
       </script>
     </div>
