@@ -5,35 +5,7 @@ class LanguageManager {
   }
 
   init() {
-    const langBtns = document.querySelectorAll('.lang-btn');
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lang = btn.dataset.lang;
-        this.switchLanguage(lang);
-      });
-    });
-
-    const savedLang = localStorage.getItem('preferredLanguage');
-    if (savedLang) {
-      this.switchLanguage(savedLang);
-    }
-
     this.renderQuotes();
-  }
-
-  switchLanguage(lang) {
-    this.currentLang = lang;
-    localStorage.setItem('preferredLanguage', lang);
-    
-    const newUrl = new URL(window.location);
-    newUrl.searchParams.set('lang', lang);
-    window.history.pushState({}, '', newUrl);
-
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-
-    this.updateContent();
   }
 
   updateContent() {
@@ -42,10 +14,7 @@ class LanguageManager {
       element.textContent = i18n[this.currentLang][key];
     });
 
-    document.title = this.currentLang === 'en' 
-      ? "Donald Trump Quotes | Presidential Wisdom & Memorable Statements"
-      : "特朗普语录 | 总统智慧与难忘言论";
-
+    document.title = "Donald Trump Quotes | Presidential Wisdom & Memorable Statements";
     this.renderQuotes();
   }
 
@@ -53,14 +22,28 @@ class LanguageManager {
     const container = document.getElementById('quoteContainer');
     const quotes = i18n[this.currentLang].quotes;
     
-    container.innerHTML = quotes.map(quote => `
-      <article class="quote-card">
-        <blockquote class="quote-content">
-          ${quote}
-        </blockquote>
-      </article>
-    `).join('');
+    container.innerHTML = quotes.map(quote => createQuoteElement(quote)).join('');
   }
+}
+
+function createQuoteElement(quote) {
+  return `
+    <div class="quote-card">
+      <div class="quote-content">
+        <p class="quote-text">${quote.text}</p>
+        <time class="quote-date">${formatDate(quote.date)}</time>
+      </div>
+    </div>
+  `;
+}
+
+function formatDate(dateString) {
+  const options = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
