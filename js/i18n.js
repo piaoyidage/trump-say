@@ -1,6 +1,6 @@
 const i18n = {
   en: {
-    title: "Trump Say",
+    title: "Trump Quotes",
     quotes: [
       "Make America Great Again!",
       "Nobody knows the system better than me, which is why I alone can fix it.",
@@ -15,7 +15,7 @@ const i18n = {
       "My fingers are long and beautiful, as, it has been well documented, are various other parts of my body.",
       "I could stand in the middle of Fifth Avenue and shoot somebody, and I wouldn't lose any voters."
     ],
-    copyright: "©2024 Trump Say. All rights reserved."
+    copyright: "©2024 Trump Quotes. All rights reserved."
   },
   zh: {
     title: "特朗普说",
