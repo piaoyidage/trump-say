@@ -1,0 +1,18 @@
+# 全局规则
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Google 爬虫特定规则
+User-agent: Googlebot
+Allow: /
+Disallow: /nogoogle/
+
+# Bing 爬虫特定规则
+User-agent: Bingbot
+Allow: /
+Disallow: /nobing/
+
+# Sitemap 位置
+Sitemap: https://trump-say.club/sitemap.xml 
