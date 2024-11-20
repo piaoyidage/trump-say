@@ -135,6 +135,9 @@ blockquote footer {
 
 /* Footer */
 footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: var(--secondary-color);
   color: var(--light-color);
   padding: 2rem 0;
